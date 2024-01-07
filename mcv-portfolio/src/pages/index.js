@@ -12,13 +12,13 @@ import {
   useTheme,
   Slider,
 } from '@mui/material';
-import { Canvas } from '@react-three/fiber';
+import { Canvas, useThree } from '@react-three/fiber';
 import { Physics } from '@react-three/cannon';
 import { OrbitControls, Stars } from '@react-three/drei';
 
 import InteractiveSphere from '@/components/ThreeDModel/InteractiveSphere.js';
 import InteractiveTorus from '@/components/ThreeDModel/InteractiveTorus';
-import ThreeDModel from '@/components/ThreeDModel/ThreeDModel';
+import InteractiveCube from '@/components/ThreeDModel/InteractiveCube';
 import ToroidalKnotGeometry from '@/components/ThreeDModel/ToroidalKnotGeometry';
 import InteractiveEdgeDodecahedron, { geometryOptions } from '@/components/ThreeDModel/InteractiveEdgeDodecahedron';
 
@@ -76,6 +76,21 @@ export default function Home() {
     )
   );
 
+  const IsometricCamera = () => {
+    const { camera } = useThree();
+
+    React.useEffect(() => {
+      const isometricPosition = [5, 5, 5]; // Adjust these values for your scene
+      camera.position.set(...isometricPosition);
+      camera.lookAt(0, 0, 0); // The camera will look at the origin
+      camera.zoom = 50; // Adjust the zoom level as needed
+      camera.updateProjectionMatrix();
+    }, [camera]);
+
+    return null;
+  };
+
+
   const render3DSection = () => (
     <Box
       sx={{
@@ -84,23 +99,23 @@ export default function Home() {
         boxShadow: '0px 4px 8px rgba(0,0,0,0.1)',
       }}
     >
-      <Canvas style={{ background: 'black' }}>
+      <Canvas style={{ background: 'black' }} orthographic>
+        <IsometricCamera />
         <ambientLight intensity={0.5} />
         <spotLight position={[10, 15, 10]} angle={0.3} />
         <OrbitControls enableZoom={true} />
         <Stars
-          radius={20}
-          depth={100}
-          count={9999}
-          factor={3}
-          saturation={1}
-          fade={true}
-          speed={1}
+          radius={50} // Distance from the center
+          depth={25}  // Layer depth of stars
+          count={99999} // Number of stars, increased for density
+          factor={3}  // Factor for star distribution
+          saturation={1} // Color saturation of stars
+          fade={true} // Fading effect on stars
         />
         <Physics>
           {activeModel === 'sphere' && <InteractiveSphere />}
           {activeModel === 'torus' && <InteractiveTorus />}
-          {activeModel === 'box' && <ThreeDModel />}
+          {activeModel === 'box' && <InteractiveCube />}
           {activeModel === 'Toroidal' && <ToroidalKnotGeometry />}
           {activeModel === 'InteractiveEdgeDodecahedron' && (
             <InteractiveEdgeDodecahedron edgeColor="your-edge-color" geometryType={geometryType} />
@@ -109,6 +124,8 @@ export default function Home() {
       </Canvas>
     </Box>
   );
+
+
 
   const renderModelButtons = () => (
     <Box sx={{ display: 'flex', justifyContent: 'center', gap: theme.spacing(1.25), marginTop: theme.spacing(2.5), flexWrap: 'wrap' }}>

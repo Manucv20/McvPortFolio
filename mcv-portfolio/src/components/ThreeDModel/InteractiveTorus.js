@@ -19,7 +19,7 @@ const InteractiveTorus = () => {
   });
 
   return (
-    <a.mesh 
+    <a.mesh
       ref={meshRef}
       scale={props.scale}
       onClick={() => setActive(!active)}

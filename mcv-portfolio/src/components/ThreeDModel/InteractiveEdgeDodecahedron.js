@@ -40,7 +40,7 @@ export const InteractiveEdgeDodecahedron = ({ geometryType }) => {
       case 'dodecahedron':
         return new DodecahedronGeometry(2.5, 0);
       case 'sphere':
-        return new SphereGeometry(2.5, 25, 25);
+        return new SphereGeometry(2.5, 50, 50);
       case 'icosahedron':
         return new IcosahedronGeometry(2.5, 0);
       case 'box':
