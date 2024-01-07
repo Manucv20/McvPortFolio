@@ -20,7 +20,7 @@ import InteractiveSphere from '@/components/ThreeDModel/InteractiveSphere.js';
 import InteractiveTorus from '@/components/ThreeDModel/InteractiveTorus';
 import ThreeDModel from '@/components/ThreeDModel/ThreeDModel';
 import ToroidalKnotGeometry from '@/components/ThreeDModel/ToroidalKnotGeometry';
-import { InteractiveEdgeDodecahedron, geometryOptions } from '@/components/ThreeDModel/InteractiveEdgeDodecahedron';
+import InteractiveEdgeDodecahedron, { geometryOptions } from '@/components/ThreeDModel/InteractiveEdgeDodecahedron';
 
 export default function Home() {
   const [activeModel, setActiveModel] = useState('sphere');
@@ -40,12 +40,15 @@ export default function Home() {
   const handleMouseLeave = () => setHoveredCard(null);
 
   const renderHeroSection = () => (
-    <Box sx={{
-      padding: theme.spacing(5),
-      textAlign: 'center',
-      backgroundImage: 'url(https://images.alphacoders.com/134/1341414.png)',
-      backgroundSize: 'cover',
-    }}>
+    <Box
+      sx={{
+        padding: theme.spacing(5),
+        textAlign: 'center',
+        backgroundImage: 'url(https://images.alphacoders.com/134/1341414.png)',
+        backgroundSize: 'cover',
+        backgroundAttachment: 'fixed',
+      }}
+    >
       <Typography variant="h2" sx={{ marginBottom: theme.spacing(2), fontSize: isMobile ? '2.5rem' : '3.5rem' }}>Welcome to My Portfolio</Typography>
       <Typography variant="h5" sx={{ marginBottom: theme.spacing(3), fontSize: isMobile ? '1.2rem' : '1.5rem' }}>Discover My Projects and Learn More About Me</Typography>
       <Button variant="contained" color="primary" sx={{ padding: theme.spacing(1, 5) }}>View My Work</Button>
@@ -74,7 +77,13 @@ export default function Home() {
   );
 
   const render3DSection = () => (
-    <Box sx={{ height: '400px', width: '100%', marginBottom: theme.spacing(2.5), padding: theme.spacing(1.25), boxShadow: '0px 4px 8px rgba(0,0,0,0.1)' }}>
+    <Box
+      sx={{
+        height: '300px',
+        width: '100%',
+        boxShadow: '0px 4px 8px rgba(0,0,0,0.1)',
+      }}
+    >
       <Canvas style={{ background: 'black' }}>
         <ambientLight intensity={0.5} />
         <spotLight position={[10, 15, 10]} angle={0.3} />
@@ -145,8 +154,8 @@ export default function Home() {
       </Head>
       <div>
         {renderHeroSection()}
-        {renderControlButtons()}
         {render3DSection()}
+        {renderControlButtons()}
         {renderModelButtons()}
         {renderFeaturedProjects()}
       </div>

@@ -42,7 +42,8 @@ const Header = () => {
       <Link key={item.text} href={item.link} passHref>
         <Button color="inherit" sx={{
           fontWeight: 'normal',
-          '&:hover': { backgroundColor: '#hoverColor', color: '#textColor' },
+          '&:hover': { backgroundColor: '#hoverColor', color: '#fff' },
+          color: '#000', // Change the text color to black (#000)
           display: 'flex',
           alignItems: 'center',
         }}
@@ -53,6 +54,8 @@ const Header = () => {
       </Link>
     ))
   );
+
+
 
   return (
     <AppBar position="static">

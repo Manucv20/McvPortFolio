@@ -1,0 +1,139 @@
+/* Reset some default browser styles */
+html,
+body,
+div,
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* Set a global font family and background color */
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #f7f7f7;
+  color: #333;
+}
+
+/* Improve readability for text */
+body,
+p,
+ul {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Style links */
+a {
+  text-decoration: none;
+  color: #007bff;
+  transition: color 0.3s ease-in-out;
+}
+
+a:hover {
+  color: #0056b3; /* Change text color on hover */
+}
+
+/* Define a container for the page content */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+/* Add some spacing utility classes */
+.mt-2 {
+  margin-top: 2rem;
+}
+
+.mb-2 {
+  margin-bottom: 2rem;
+}
+
+/* Define a button style */
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  font-size: 16px; /* Button font size */
+  font-weight: bold; /* Button font weight */
+}
+
+.button:hover {
+  background-color: #0056b3; /* Change background color on hover */
+}
+
+/* Define a responsive grid layout */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+/* Style headers */
+h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333; /* Header text color */
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #333; /* Header text color */
+}
+
+/* Add responsive styles for smaller screens */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+  .container {
+    padding: 15px;
+  }
+  .grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+  }
+}
+
+/* Dark mode styles */
+.dark-mode {
+  background-color: #333;
+  color: #fff;
+}
+
+/* Footer styles */
+.footer {
+  background-color: #222;
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+}
+
+/* Social media icons in the footer */
+.social-icons {
+  margin-top: 10px;
+}
+
+.social-icons a {
+  color: #fff;
+  margin: 0 10px;
+  font-size: 24px;
+}
+
+/* Add more styles as needed */
