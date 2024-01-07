@@ -17,6 +17,7 @@ import { Physics } from '@react-three/cannon';
 import { OrbitControls, Stars } from '@react-three/drei';
 
 import InteractiveSphere from '@/components/ThreeDModel/InteractiveSphere.js';
+import InteractiveSphere2 from '@/components/ThreeDModel/InteractiveSphere2.js';
 import InteractiveTorus from '@/components/ThreeDModel/InteractiveTorus';
 import InteractiveCube from '@/components/ThreeDModel/InteractiveCube';
 import ToroidalKnotGeometry from '@/components/ThreeDModel/ToroidalKnotGeometry';
@@ -114,6 +115,7 @@ export default function Home() {
         />
         <Physics>
           {activeModel === 'sphere' && <InteractiveSphere />}
+          {activeModel === 'sphere2' && <InteractiveSphere2 />}
           {activeModel === 'torus' && <InteractiveTorus />}
           {activeModel === 'box' && <InteractiveCube />}
           {activeModel === 'Toroidal' && <ToroidalKnotGeometry />}
@@ -130,6 +132,7 @@ export default function Home() {
   const renderModelButtons = () => (
     <Box sx={{ display: 'flex', justifyContent: 'center', gap: theme.spacing(1.25), marginTop: theme.spacing(2.5), flexWrap: 'wrap' }}>
       <Button variant="outlined" color="primary" onClick={() => setActiveModel('sphere')} aria-label="Show Sphere">Sphere</Button>
+      <Button variant="outlined" color="primary" onClick={() => setActiveModel('sphere2')} aria-label="Show Sphere 2">Sphere 2</Button>
       <Button variant="outlined" color="primary" onClick={() => setActiveModel('torus')} aria-label="Show Torus">Torus</Button>
       <Button variant="outlined" color="primary" onClick={() => setActiveModel('box')} aria-label="Show 3D Box">3D Box</Button>
       <Button variant="outlined" color="primary" onClick={() => setActiveModel('Toroidal')} aria-label="Show Toroidal Knot">Toroidal Knot</Button>

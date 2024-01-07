@@ -63,7 +63,7 @@ const Header = () => {
         <Grid container alignItems="center">
           <Grid item xs={6} md={4}>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1, fontWeight: 'bold' }}>
-              Mi Portfolio
+              MCV
             </Typography>
           </Grid>
           <Grid item xs={6} md={8} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
