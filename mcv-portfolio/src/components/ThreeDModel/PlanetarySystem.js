@@ -10,22 +10,22 @@ import InteractiveEdgeDodecahedron from '@/components/ThreeDModel/InteractiveEdg
 
 const PlanetarySystem = () => {
     const planetModels = [
-        <InteractiveSphere2 />, // Central star (replaced with InteractiveSphere2)
-        <InteractiveSphere />,
-        <InteractiveTorus />,
+        <InteractiveSphere2 />, // Central star (InteractiveSphere2)
+        <InteractiveTorus />,   // Torus
+        <InteractiveSphere />,  // Sphere
         <InteractiveCube />,
         <ToroidalKnotGeometry />,
         <InteractiveEdgeDodecahedron edgeColor="your-edge-color" geometryType="convex" />,
     ];
 
-    // Increased distances for a more spacious layout
+    // More spaced out positions
     const planetPositions = [
         [0, 0, 0],    // Central star
-        [5, 0, 0],    // First planet
-        [7, 0, 0],    // Second planet
-        [10, 0, 0],   // Third planet
-        [13, 0, 0],   // Fourth planet
-        [16, 0, 0],   // Fifth planet
+        [6, 0, 0],    // First planet (Torus)
+        [9, 0, 0],    // Second planet (Sphere)
+        [13, 0, 0],   // Third planet
+        [17, 0, 0],   // Fourth planet
+        [22, 0, 0],   // Fifth planet
     ];
 
     const planetRefs = planetPositions.map(() => useRef());
@@ -35,7 +35,8 @@ const PlanetarySystem = () => {
         planetPositions.forEach((_, index) => {
             if (index !== 0) { // Skip the central star
                 const radius = Math.sqrt(planetPositions[index][0] ** 2 + planetPositions[index][2] ** 2);
-                const angle = elapsed * (0.1 - index * 0.01) + index; // Different rotation speed for each planet
+                // Different rotation speed for each planet and varied initial position
+                const angle = elapsed * (0.25 - index * 0.005) + Math.PI * 0.5 * index;
                 const planet = planetRefs[index].current;
                 planet.position.x = radius * Math.sin(angle);
                 planet.position.z = radius * Math.cos(angle);

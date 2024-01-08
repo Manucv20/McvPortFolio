@@ -117,20 +117,26 @@ export default function Home() {
           fade={true}
         />
         <Physics>
-          {activeModel === 'sphere' && <InteractiveSphere />}
-          {activeModel === 'sphere2' && <InteractiveSphere2 />}
-          {activeModel === 'torus' && <InteractiveTorus />}
-          {activeModel === 'box' && <InteractiveCube />}
-          {activeModel === 'Toroidal' && <ToroidalKnotGeometry />}
-          {activeModel === 'InteractiveEdgeDodecahedron' && (
-            <InteractiveEdgeDodecahedron edgeColor="your-edge-color" geometryType={geometryType} />
+          {/* Renderiza los modelos individuales solo si showPlanetarySystem no está activado */}
+          {!showPlanetarySystem && (
+            <>
+              {activeModel === 'sphere' && <InteractiveSphere />}
+              {activeModel === 'sphere2' && <InteractiveSphere2 />}
+              {activeModel === 'torus' && <InteractiveTorus />}
+              {activeModel === 'box' && <InteractiveCube />}
+              {activeModel === 'Toroidal' && <ToroidalKnotGeometry />}
+              {activeModel === 'InteractiveEdgeDodecahedron' && (
+                <InteractiveEdgeDodecahedron edgeColor="your-edge-color" geometryType={geometryType} />
+              )}
+            </>
           )}
-          {/* This line should not affect other models */}
+          {/* Renderiza el sistema planetario si showPlanetarySystem está activado */}
           {showPlanetarySystem && <PlanetarySystem />}
         </Physics>
       </Canvas>
     </Box>
   );
+
 
 
 
