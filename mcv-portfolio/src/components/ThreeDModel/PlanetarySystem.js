@@ -9,35 +9,26 @@ import ToroidalKnotGeometry from '@/components/ThreeDModel/ToroidalKnotGeometry'
 import InteractiveEdgeDodecahedron from '@/components/ThreeDModel/InteractiveEdgeDodecahedron';
 
 const PlanetarySystem = () => {
+    // Creación de elementos con la key correspondiente
     const planetModels = [
-        <InteractiveSphere2 />, // Central star (InteractiveSphere2)
-        <InteractiveTorus />,   // Torus
-        <InteractiveSphere />,  // Sphere
-        <InteractiveCube />,
-        <ToroidalKnotGeometry />,
-        <InteractiveEdgeDodecahedron edgeColor="your-edge-color" geometryType="convex" />,
+        { element: <InteractiveSphere2 key="star" />, type: 'star' },
+        { element: <InteractiveTorus key="torus" />, type: 'planet' },
+        { element: <InteractiveSphere key="sphere" />, type: 'planet' },
+        { element: <InteractiveCube key="cube" />, type: 'planet' },
+        { element: <ToroidalKnotGeometry key="knot" />, type: 'planet' },
+        { element: <InteractiveEdgeDodecahedron edgeColor="your-edge-color" geometryType="convex" key="dodecahedron" />, type: 'planet' },
     ];
 
-    // More spaced out positions
-    const planetPositions = [
-        [0, 0, 0],    // Central star
-        [6, 0, 0],    // First planet (Torus)
-        [9, 0, 0],    // Second planet (Sphere)
-        [13, 0, 0],   // Third planet
-        [17, 0, 0],   // Fourth planet
-        [22, 0, 0],   // Fifth planet
-    ];
-
-    const planetRefs = planetPositions.map(() => useRef());
+    // Inicialización de referencias
+    const planetRefs = useRef(planetModels.map(() => React.createRef()));
 
     useFrame(({ clock }) => {
         const elapsed = clock.getElapsedTime();
-        planetPositions.forEach((_, index) => {
-            if (index !== 0) { // Skip the central star
-                const radius = Math.sqrt(planetPositions[index][0] ** 2 + planetPositions[index][2] ** 2);
-                // Different rotation speed for each planet and varied initial position
+        planetModels.forEach((_, index) => {
+            if (index !== 0) { // Saltar la estrella central
+                const radius = 5 + 3 * index; // Ajuste de radio
                 const angle = elapsed * (0.25 - index * 0.005) + Math.PI * 0.5 * index;
-                const planet = planetRefs[index].current;
+                const planet = planetRefs.current[index].current;
                 planet.position.x = radius * Math.sin(angle);
                 planet.position.z = radius * Math.cos(angle);
             }
@@ -47,8 +38,8 @@ const PlanetarySystem = () => {
     return (
         <>
             {planetModels.map((model, index) => (
-                <mesh key={index} position={planetPositions[index]} ref={planetRefs[index]}>
-                    {model}
+                <mesh key={index} position={[0, 0, 0]} ref={planetRefs.current[index]}>
+                    {model.element}
                 </mesh>
             ))}
         </>
