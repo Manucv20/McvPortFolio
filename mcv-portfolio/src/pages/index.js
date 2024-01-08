@@ -16,17 +16,20 @@ import { Canvas, useThree } from '@react-three/fiber';
 import { Physics } from '@react-three/cannon';
 import { OrbitControls, Stars } from '@react-three/drei';
 
-import InteractiveSphere from '@/components/ThreeDModel/InteractiveSphere.js';
-import InteractiveSphere2 from '@/components/ThreeDModel/InteractiveSphere2.js';
+import InteractiveSphere from '@/components/ThreeDModel/InteractiveSphere';
+import InteractiveSphere2 from '@/components/ThreeDModel/InteractiveSphere2';
 import InteractiveTorus from '@/components/ThreeDModel/InteractiveTorus';
 import InteractiveCube from '@/components/ThreeDModel/InteractiveCube';
 import ToroidalKnotGeometry from '@/components/ThreeDModel/ToroidalKnotGeometry';
 import InteractiveEdgeDodecahedron, { geometryOptions } from '@/components/ThreeDModel/InteractiveEdgeDodecahedron';
+import PlanetarySystem from '@/components/ThreeDModel/PlanetarySystem';
 
 export default function Home() {
   const [activeModel, setActiveModel] = useState('sphere');
   const [geometryType, setGeometryType] = useState('convex');
   const [hoveredCard, setHoveredCard] = useState(null);
+
+  const [showPlanetarySystem, setShowPlanetarySystem] = useState(false);
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
@@ -106,12 +109,12 @@ export default function Home() {
         <spotLight position={[10, 15, 10]} angle={0.3} />
         <OrbitControls enableZoom={true} />
         <Stars
-          radius={50} // Distance from the center
-          depth={25}  // Layer depth of stars
-          count={99999} // Number of stars, increased for density
-          factor={3}  // Factor for star distribution
-          saturation={1} // Color saturation of stars
-          fade={true} // Fading effect on stars
+          radius={50}
+          depth={25}
+          count={99999}
+          factor={3}
+          saturation={1}
+          fade={true}
         />
         <Physics>
           {activeModel === 'sphere' && <InteractiveSphere />}
@@ -122,10 +125,13 @@ export default function Home() {
           {activeModel === 'InteractiveEdgeDodecahedron' && (
             <InteractiveEdgeDodecahedron edgeColor="your-edge-color" geometryType={geometryType} />
           )}
+          {/* This line should not affect other models */}
+          {showPlanetarySystem && <PlanetarySystem />}
         </Physics>
       </Canvas>
     </Box>
   );
+
 
 
 
@@ -137,6 +143,7 @@ export default function Home() {
       <Button variant="outlined" color="primary" onClick={() => setActiveModel('box')} aria-label="Show 3D Box">3D Box</Button>
       <Button variant="outlined" color="primary" onClick={() => setActiveModel('Toroidal')} aria-label="Show Toroidal Knot">Toroidal Knot</Button>
       <Button variant="outlined" color="primary" onClick={() => setActiveModel('InteractiveEdgeDodecahedron')} aria-label="Show Interactive Edge Dodecahedron">Interactive Edge Dodecahedron</Button>
+      <Button variant="outlined" color="primary" onClick={() => setShowPlanetarySystem(prev => !prev)} aria-label="Toggle Planetary System">Toggle Planetary System</Button>
     </Box>
   );
 
