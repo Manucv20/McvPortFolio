@@ -25,15 +25,13 @@ import ToroidalKnotGeometry from '@/components/ThreeDModel/ToroidalKnotGeometry'
 import InteractiveEdgeDodecahedron, { geometryOptions } from '@/components/ThreeDModel/InteractiveEdgeDodecahedron';
 import PlanetarySystem from '@/components/ThreeDModel/PlanetarySystem';
 import InteractiveModel from '@/components/ThreeDModel/InteractiveModel';
+import InteractiveModel2 from '@/components/ThreeDModel/InteractiveModel2';
 
 
 export default function Home() {
   const [activeModel, setActiveModel] = useState('sphere');
   const [geometryType, setGeometryType] = useState('convex');
   const [hoveredCard, setHoveredCard] = useState(null);
-  const [showGLBModel, setShowGLBModel] = useState(false);
-
-  const [showPlanetarySystem, setShowPlanetarySystem] = useState(false);
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
@@ -131,6 +129,7 @@ export default function Home() {
           )}
           {activeModel === 'PlanetarySystem' && <PlanetarySystem />}
           {activeModel === 'GLBModel' && <InteractiveModel modelPath="/poly.glb" />}
+          {activeModel === 'objModel' && <InteractiveModel2 modelPath="/skull.obj" />}
         </Physics>
       </Canvas>
     </Box>
@@ -147,6 +146,7 @@ export default function Home() {
       <Button variant="outlined" color="primary" onClick={() => setActiveModel('InteractiveEdgeDodecahedron')} aria-label="Show Interactive Edge Dodecahedron">Interactive Edge Dodecahedron</Button>
       <Button variant="outlined" color="primary" onClick={() => setActiveModel('PlanetarySystem')} aria-label="Toggle Planetary System">Planetary System</Button>
       <Button variant="outlined" color="primary" onClick={() => setActiveModel('GLBModel')} aria-label="Toggle GLB Model">GLB Model</Button>
+      <Button variant="outlined" onClick={() => setActiveModel('objModel')} aria-label="Toggle OBJ Model">OBJ Model</Button>
     </Box>
   );
 
