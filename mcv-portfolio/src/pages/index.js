@@ -22,6 +22,7 @@ import InteractiveSphere2 from '@/components/ThreeDModel/InteractiveSphere2';
 import InteractiveTorus from '@/components/ThreeDModel/InteractiveTorus';
 import InteractiveCube from '@/components/ThreeDModel/InteractiveCube';
 import ToroidalKnotGeometry from '@/components/ThreeDModel/ToroidalKnotGeometry';
+import InteractiveMultiGeometry from '@/components/ThreeDModel/InteractiveMultiGeometry';
 import InteractiveEdgeDodecahedron, { geometryOptions } from '@/components/ThreeDModel/InteractiveEdgeDodecahedron';
 import PlanetarySystem from '@/components/ThreeDModel/PlanetarySystem';
 import InteractiveModel from '@/components/ThreeDModel/InteractiveModel';
@@ -107,8 +108,10 @@ export default function Home() {
     >
       <Canvas style={{ background: 'black' }} orthographic>
         <IsometricCamera />
-        <ambientLight intensity={0.5} />
-        <spotLight position={[10, 15, 10]} angle={0.3} />
+        <ambientLight intensity={0.4} />
+        <pointLight position={[10, 10, 10]} intensity={1} />
+        <spotLight position={[10, 15, 10]} angle={0.3} intensity={2} penumbra={1} />
+        <directionalLight position={[-2, 5, 2]} intensity={1} />
         <OrbitControls enableZoom={true} />
         <Stars
           radius={50}
@@ -124,6 +127,7 @@ export default function Home() {
           {activeModel === 'torus' && <InteractiveTorus />}
           {activeModel === 'box' && <InteractiveCube />}
           {activeModel === 'Toroidal' && <ToroidalKnotGeometry />}
+          {activeModel === 'InteractiveMultiGeometry' && <InteractiveMultiGeometry />}
           {activeModel === 'InteractiveEdgeDodecahedron' && (
             <InteractiveEdgeDodecahedron edgeColor="your-edge-color" geometryType={geometryType} />
           )}
@@ -143,6 +147,7 @@ export default function Home() {
       <Button variant="outlined" color="primary" onClick={() => setActiveModel('torus')} aria-label="Show Torus">Torus</Button>
       <Button variant="outlined" color="primary" onClick={() => setActiveModel('box')} aria-label="Show 3D Box">3D Box</Button>
       <Button variant="outlined" color="primary" onClick={() => setActiveModel('Toroidal')} aria-label="Show Toroidal Knot">Toroidal Knot</Button>
+      <Button variant="outlined" color="primary" onClick={() => setActiveModel('InteractiveMultiGeometry')} aria-label="MultiGeometry">MultiGeometry</Button>
       <Button variant="outlined" color="primary" onClick={() => setActiveModel('InteractiveEdgeDodecahedron')} aria-label="Show Interactive Edge Dodecahedron">Interactive Edge Dodecahedron</Button>
       <Button variant="outlined" color="primary" onClick={() => setActiveModel('PlanetarySystem')} aria-label="Toggle Planetary System">Planetary System</Button>
       <Button variant="outlined" color="primary" onClick={() => setActiveModel('GLBModel')} aria-label="Toggle GLB Model">GLB Model</Button>
