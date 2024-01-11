@@ -10,13 +10,14 @@ const InteractiveModel = ({ modelPath }) => {
     const [hovered, setHover] = useState(false);
 
     const props = useSpring({
-        scale: active ? [1.5, 1.5, 1.5] : [8, 8, 8],
+        scale: active ? [8, 8, 8] : [10, 10, 10],
     });
 
     return (
         <a.mesh
             ref={meshRef}
             scale={props.scale}
+            position={[0, -5, 0]}
             onClick={() => setActive(!active)}
             onPointerOver={() => setHover(true)}
             onPointerOut={() => setHover(false)}

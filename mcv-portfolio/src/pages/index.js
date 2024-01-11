@@ -132,7 +132,7 @@ export default function Home() {
             <InteractiveEdgeDodecahedron edgeColor="your-edge-color" geometryType={geometryType} />
           )}
           {activeModel === 'PlanetarySystem' && <PlanetarySystem />}
-          {activeModel === 'GLBModel' && <InteractiveModel modelPath="/poly.glb" />}
+          {activeModel === 'GLBModel' && <InteractiveModel modelPath="/manuModel.gltf" />}
           {activeModel === 'objModel' && <InteractiveModel2 modelPath="/skull.obj" />}
         </Physics>
       </Canvas>
