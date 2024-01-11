@@ -133,7 +133,7 @@ export default function Home() {
           )}
           {activeModel === 'PlanetarySystem' && <PlanetarySystem />}
           {activeModel === 'GLBModel' && <InteractiveModel modelPath="/manuModel.gltf" />}
-          {activeModel === 'objModel' && <InteractiveModel2 modelPath="/skull.obj" />}
+          {activeModel === 'objModel' && <InteractiveModel2 modelPath="/skull.obj" texturePath="/skull.jpg" />}
         </Physics>
       </Canvas>
     </Box>
