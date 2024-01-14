@@ -58,7 +58,7 @@ export default function Home() {
     >
       <Typography variant="h2" sx={{ marginBottom: theme.spacing(2), fontSize: isMobile ? '2.5rem' : '3.5rem' }}>Welcome to My Portfolio</Typography>
       <Typography variant="h5" sx={{ marginBottom: theme.spacing(3), fontSize: isMobile ? '1.2rem' : '1.5rem' }}>Discover My Projects and Learn More About Me</Typography>
-      <Button variant="contained" color="primary" sx={{ padding: theme.spacing(1, 5) }}>View My Work</Button>
+      <Button className="button" variant="contained" color="primary" sx={{ padding: theme.spacing(1, 5) }}>View My Work</Button>
     </Box>
   );
 
@@ -142,16 +142,16 @@ export default function Home() {
 
   const renderModelButtons = () => (
     <Box sx={{ display: 'flex', justifyContent: 'center', gap: theme.spacing(1.25), marginTop: theme.spacing(2.5), flexWrap: 'wrap' }}>
-      <Button variant="outlined" color="primary" onClick={() => setActiveModel('sphere')} aria-label="Show Sphere">Sphere</Button>
-      <Button variant="outlined" color="primary" onClick={() => setActiveModel('sphere2')} aria-label="Show Sphere 2">Sphere 2</Button>
-      <Button variant="outlined" color="primary" onClick={() => setActiveModel('torus')} aria-label="Show Torus">Torus</Button>
-      <Button variant="outlined" color="primary" onClick={() => setActiveModel('box')} aria-label="Show 3D Box">3D Box</Button>
-      <Button variant="outlined" color="primary" onClick={() => setActiveModel('Toroidal')} aria-label="Show Toroidal Knot">Toroidal Knot</Button>
-      <Button variant="outlined" color="primary" onClick={() => setActiveModel('InteractiveMultiGeometry')} aria-label="MultiGeometry">MultiGeometry</Button>
-      <Button variant="outlined" color="primary" onClick={() => setActiveModel('InteractiveEdgeDodecahedron')} aria-label="Show Interactive Edge Dodecahedron">Interactive Edge Dodecahedron</Button>
-      <Button variant="outlined" color="primary" onClick={() => setActiveModel('PlanetarySystem')} aria-label="Toggle Planetary System">Planetary System</Button>
-      <Button variant="outlined" color="primary" onClick={() => setActiveModel('GLBModel')} aria-label="Toggle GLB Model">GLB Model</Button>
-      <Button variant="outlined" onClick={() => setActiveModel('objModel')} aria-label="Toggle OBJ Model">OBJ Model</Button>
+      <Button className="button" variant="outlined" color="primary" onClick={() => setActiveModel('sphere')} aria-label="Show Sphere">Sphere</Button>
+      <Button className="button" variant="outlined" color="primary" onClick={() => setActiveModel('sphere2')} aria-label="Show Sphere 2">Sphere 2</Button>
+      <Button className="button" variant="outlined" color="primary" onClick={() => setActiveModel('torus')} aria-label="Show Torus">Torus</Button>
+      <Button className="button" variant="outlined" color="primary" onClick={() => setActiveModel('box')} aria-label="Show 3D Box">3D Box</Button>
+      <Button className="button" variant="outlined" color="primary" onClick={() => setActiveModel('Toroidal')} aria-label="Show Toroidal Knot">Toroidal Knot</Button>
+      <Button className="button" variant="outlined" color="primary" onClick={() => setActiveModel('InteractiveMultiGeometry')} aria-label="MultiGeometry">MultiGeometry</Button>
+      <Button className="button" variant="outlined" color="primary" onClick={() => setActiveModel('InteractiveEdgeDodecahedron')} aria-label="Show Interactive Edge Dodecahedron">Interactive Edge Dodecahedron</Button>
+      <Button className="button" variant="outlined" color="primary" onClick={() => setActiveModel('PlanetarySystem')} aria-label="Toggle Planetary System">Planetary System</Button>
+      <Button className="button" variant="outlined" color="primary" onClick={() => setActiveModel('GLBModel')} aria-label="Toggle GLB Model">GLB Model</Button>
+      <Button className="button" variant="outlined" onClick={() => setActiveModel('objModel')} aria-label="Toggle OBJ Model">OBJ Model</Button>
     </Box>
   );
 

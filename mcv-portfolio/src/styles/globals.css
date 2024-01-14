@@ -66,13 +66,22 @@ a:hover {
   color: #fff;
   border: none;
   cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
-  font-size: 16px; /* Button font size */
-  font-weight: bold; /* Button font weight */
+  transition: all 0.3s ease-in-out;
+  font-size: 10px;
+  font-weight: bold;
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0 5px #0056b3; /* Shadow for 3D effect */
 }
 
 .button:hover {
-  background-color: #0056b3; /* Change background color on hover */
+  background-color: #0056b3;
+  box-shadow: 0 2px #003a70;
+  transform: translateY(-3px); /* Button lifts up */
+}
+
+.button:active {
+  transform: translateY(1px); /* Button presses down */
+  box-shadow: 0 1px #003a70;
 }
 
 /* Define a responsive grid layout */
