@@ -3,10 +3,6 @@ import Head from 'next/head';
 import {
   Typography,
   Button,
-  Grid,
-  Card,
-  CardMedia,
-  CardContent,
   Box,
   useMediaQuery,
   useTheme,
@@ -19,7 +15,6 @@ import {
 import { Canvas, useThree } from '@react-three/fiber';
 import { Physics } from '@react-three/cannon';
 import { OrbitControls, Stars } from '@react-three/drei';
-
 
 import InteractiveSphere from '@/components/ThreeDModel/InteractiveSphere';
 import InteractiveSphere2 from '@/components/ThreeDModel/InteractiveSphere2';
@@ -36,19 +31,9 @@ import InteractiveModel2 from '@/components/ThreeDModel/InteractiveModel2';
 export default function Home() {
   const [activeModel, setActiveModel] = useState('sphere');
   const [geometryType, setGeometryType] = useState('convex');
-  //const [hoveredCard, setHoveredCard] = useState(null);
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-
-  const projects = [
-    { id: 1, title: 'Project 1', description: 'Description of Project 1', imageUrl: '/path-to-your-image' },
-    { id: 2, title: 'Project 2', description: 'Description of Project 2', imageUrl: '/path-to-your-image' },
-    // Add more projects as needed
-  ];
-
-  //const handleMouseEnter = (id) => setHoveredCard(id);
-  //const handleMouseLeave = () => setHoveredCard(null);
 
   const renderHeroSection = () => (
     <Box
@@ -111,7 +96,7 @@ export default function Home() {
     >
       <Canvas style={{ background: 'black' }} orthographic>
         <IsometricCamera />
-        <ambientLight intensity={0.5} /> {/* Increased ambient light for overall brightness */}
+        <ambientLight intensity={0.8} /> {/* Increased ambient light for overall brightness */}
         <pointLight position={[10, 10, 10]} intensity={2} /> {/* Reduced intensity for softer shadows */}
         <spotLight position={[10, 15, 10]} angle={0.3} intensity={2} penumbra={0.5} /> {/* Adjusted for a more focused spotlight */}
         <directionalLight position={[-2, 5, 2]} intensity={2} /> {/* Reduced intensity for less harsh sunlight effect */}
@@ -180,33 +165,6 @@ export default function Home() {
     );
   };
 
-
-  /* const renderFeaturedProjects = () => (
-    <Box sx={{ padding: theme.spacing(2.5) }}>
-      <Typography variant="h4">Featured Projects</Typography>
-      <Grid container spacing={isMobile ? 1 : 2}>
-        {projects.map((project) => (
-          <Grid item xs={12} sm={6} md={4} key={project.id}>
-            <Card
-              onMouseEnter={() => handleMouseEnter(project.id)}
-              onMouseLeave={handleMouseLeave}
-              sx={{
-                boxShadow: hoveredCard === project.id ? '0px 10px 20px rgba(0,0,0,0.2)' : '',
-                transition: 'box-shadow 0.3s ease-in-out',
-              }}
-            >
-              <CardMedia component="img" height="180" image={project.imageUrl} alt={project.title} />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">{project.title}</Typography>
-                <Typography variant="body2" color="text.secondary">{project.description}</Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
-    </Box>
-  ); */
-
   return (
     <>
       <Head>
@@ -214,10 +172,10 @@ export default function Home() {
         <meta name="description" content="Discover my projects and learn more about me" />
       </Head>
       <div>
+        {renderHeroSection()}
         {renderModelButtons()}
         {renderControlButtons()}
         {render3DSection()}
-        {renderHeroSection()}
       </div>
     </>
   );
