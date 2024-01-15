@@ -41,7 +41,7 @@ const InteractiveCube = () => {
 
   return (
     <mesh ref={meshRef}>
-      <boxGeometry args={[2, 2, 2]} />
+      <boxGeometry args={[4, 4, 4]} />
       <cubeShaderMaterial />
     </mesh>
   );

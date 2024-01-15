@@ -11,6 +11,10 @@ import {
   useMediaQuery,
   useTheme,
   Slider,
+  Select,
+  MenuItem,
+  FormControl,
+  InputLabel
 } from '@mui/material';
 import { Canvas, useThree } from '@react-three/fiber';
 import { Physics } from '@react-three/cannon';
@@ -32,7 +36,7 @@ import InteractiveModel2 from '@/components/ThreeDModel/InteractiveModel2';
 export default function Home() {
   const [activeModel, setActiveModel] = useState('sphere');
   const [geometryType, setGeometryType] = useState('convex');
-  const [hoveredCard, setHoveredCard] = useState(null);
+  //const [hoveredCard, setHoveredCard] = useState(null);
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
@@ -43,8 +47,8 @@ export default function Home() {
     // Add more projects as needed
   ];
 
-  const handleMouseEnter = (id) => setHoveredCard(id);
-  const handleMouseLeave = () => setHoveredCard(null);
+  //const handleMouseEnter = (id) => setHoveredCard(id);
+  //const handleMouseLeave = () => setHoveredCard(null);
 
   const renderHeroSection = () => (
     <Box
@@ -64,7 +68,7 @@ export default function Home() {
 
   const renderControlButtons = () => (
     activeModel === 'InteractiveEdgeDodecahedron' && (
-      <Box sx={{ textAlign: 'center', marginTop: theme.spacing(2.5) }}>
+      <Box sx={{ textAlign: 'center', marginTop: theme.spacing(0.5) }}>
         <Typography variant="h6" gutterBottom>
           Select Geometry Type
         </Typography>
@@ -77,7 +81,7 @@ export default function Home() {
           valueLabelDisplay="auto"
           valueLabelFormat={(value) => geometryOptions[value].label}
           aria-label="Geometry Type"
-          sx={{ width: '200px' }}
+          sx={{ width: '300px' }}
         />
       </Box>
     )
@@ -90,7 +94,7 @@ export default function Home() {
       const isometricPosition = [5, 5, 5]; // Adjust these values for your scene
       camera.position.set(...isometricPosition);
       camera.lookAt(0, 0, 0); // The camera will look at the origin
-      camera.zoom = 50; // Adjust the zoom level as needed
+      camera.zoom = 40; // Adjust the zoom level as needed
       camera.updateProjectionMatrix();
     }, [camera]);
 
@@ -101,17 +105,16 @@ export default function Home() {
   const render3DSection = () => (
     <Box
       sx={{
-        height: '300px',
+        height: '450px',
         width: '100%',
-        boxShadow: '0px 4px 8px rgba(0,0,0,0.1)',
       }}
     >
       <Canvas style={{ background: 'black' }} orthographic>
         <IsometricCamera />
-        <ambientLight intensity={0.4} />
-        <pointLight position={[10, 10, 10]} intensity={1} />
-        <spotLight position={[10, 15, 10]} angle={0.3} intensity={2} penumbra={1} />
-        <directionalLight position={[-2, 5, 2]} intensity={1} />
+        <ambientLight intensity={0.5} /> {/* Increased ambient light for overall brightness */}
+        <pointLight position={[10, 10, 10]} intensity={2} /> {/* Reduced intensity for softer shadows */}
+        <spotLight position={[10, 15, 10]} angle={0.3} intensity={2} penumbra={0.5} /> {/* Adjusted for a more focused spotlight */}
+        <directionalLight position={[-2, 5, 2]} intensity={2} /> {/* Reduced intensity for less harsh sunlight effect */}
         <OrbitControls enableZoom={true} />
         <Stars
           radius={50}
@@ -120,6 +123,7 @@ export default function Home() {
           factor={3}
           saturation={1}
           fade={true}
+          speed={1}
         />
         <Physics>
           {activeModel === 'sphere' && <InteractiveSphere />}
@@ -140,23 +144,44 @@ export default function Home() {
   );
 
 
-  const renderModelButtons = () => (
-    <Box sx={{ display: 'flex', justifyContent: 'center', gap: theme.spacing(1.25), marginTop: theme.spacing(2.5), flexWrap: 'wrap' }}>
-      <Button className="button" variant="outlined" color="primary" onClick={() => setActiveModel('sphere')} aria-label="Show Sphere">Sphere</Button>
-      <Button className="button" variant="outlined" color="primary" onClick={() => setActiveModel('sphere2')} aria-label="Show Sphere 2">Sphere 2</Button>
-      <Button className="button" variant="outlined" color="primary" onClick={() => setActiveModel('torus')} aria-label="Show Torus">Torus</Button>
-      <Button className="button" variant="outlined" color="primary" onClick={() => setActiveModel('box')} aria-label="Show 3D Box">3D Box</Button>
-      <Button className="button" variant="outlined" color="primary" onClick={() => setActiveModel('Toroidal')} aria-label="Show Toroidal Knot">Toroidal Knot</Button>
-      <Button className="button" variant="outlined" color="primary" onClick={() => setActiveModel('InteractiveMultiGeometry')} aria-label="MultiGeometry">MultiGeometry</Button>
-      <Button className="button" variant="outlined" color="primary" onClick={() => setActiveModel('InteractiveEdgeDodecahedron')} aria-label="Show Interactive Edge Dodecahedron">Interactive Edge Dodecahedron</Button>
-      <Button className="button" variant="outlined" color="primary" onClick={() => setActiveModel('PlanetarySystem')} aria-label="Toggle Planetary System">Planetary System</Button>
-      <Button className="button" variant="outlined" color="primary" onClick={() => setActiveModel('GLBModel')} aria-label="Toggle GLB Model">GLB Model</Button>
-      <Button className="button" variant="outlined" onClick={() => setActiveModel('objModel')} aria-label="Toggle OBJ Model">OBJ Model</Button>
-    </Box>
-  );
+  const renderModelButtons = () => {
+    const modelOptions = [
+      { value: 'sphere', label: 'Sphere' },
+      { value: 'sphere2', label: 'Sphere 2' },
+      { value: 'torus', label: 'Torus' },
+      { value: 'box', label: '3D Box' },
+      { value: 'Toroidal', label: 'Toroidal Knot' },
+      { value: 'InteractiveMultiGeometry', label: 'MultiGeometry' },
+      { value: 'InteractiveEdgeDodecahedron', label: 'Interactive Edge Dodecahedron' },
+      { value: 'PlanetarySystem', label: 'Planetary System' },
+      { value: 'GLBModel', label: 'GLB Model' },
+      { value: 'objModel', label: 'OBJ Model' },
+    ];
+
+    return (
+      <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: theme.spacing(1.5) }}>
+        <FormControl sx={{ minWidth: 200 }}>
+          <InputLabel id="model-selector-label">Select Model</InputLabel>
+          <Select
+            labelId="model-selector-label"
+            id="model-selector"
+            value={activeModel}
+            label="Select Model"
+            onChange={(e) => setActiveModel(e.target.value)}
+          >
+            {modelOptions.map((option) => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </Box>
+    );
+  };
 
 
-  const renderFeaturedProjects = () => (
+  /* const renderFeaturedProjects = () => (
     <Box sx={{ padding: theme.spacing(2.5) }}>
       <Typography variant="h4">Featured Projects</Typography>
       <Grid container spacing={isMobile ? 1 : 2}>
@@ -180,7 +205,7 @@ export default function Home() {
         ))}
       </Grid>
     </Box>
-  );
+  ); */
 
   return (
     <>
@@ -189,11 +214,10 @@ export default function Home() {
         <meta name="description" content="Discover my projects and learn more about me" />
       </Head>
       <div>
-        {renderHeroSection()}
-        {render3DSection()}
-        {renderControlButtons()}
         {renderModelButtons()}
-        {renderFeaturedProjects()}
+        {renderControlButtons()}
+        {render3DSection()}
+        {renderHeroSection()}
       </div>
     </>
   );

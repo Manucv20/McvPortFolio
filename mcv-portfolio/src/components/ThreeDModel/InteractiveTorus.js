@@ -8,7 +8,7 @@ const InteractiveTorus = () => {
   const [hovered, setHover] = useState(false);
 
   const props = useSpring({
-    scale: active ? [1.5, 1.5, 1.5] : [1, 1, 1],
+    scale: active ? [3, 3, 3] : [3.5, 3.5, 3.5],
     color: hovered ? 'hotpink' : 'blue',
     rotationSpeed: active ? 0.05 : hovered ? 0.02 : 0.01
   });
