@@ -21,36 +21,6 @@ const Footer = () => {
       </Typography>
       <Grid container justifyContent="center" mt={2}>
         <IconButton
-          aria-label="Facebook"
-          component="a"
-          href="https://www.facebook.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          sx={{ color: 'white' }}
-        >
-          <FacebookIcon />
-        </IconButton>
-        <IconButton
-          aria-label="Twitter"
-          component="a"
-          href="https://twitter.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          sx={{ color: 'white' }}
-        >
-          <TwitterIcon />
-        </IconButton>
-        <IconButton
-          aria-label="Instagram"
-          component="a"
-          href="https://www.instagram.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          sx={{ color: 'white' }}
-        >
-          <InstagramIcon />
-        </IconButton>
-        <IconButton
           aria-label="LinkedIn"
           component="a"
           href="https://www.linkedin.com/"
